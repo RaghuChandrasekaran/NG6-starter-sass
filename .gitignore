@@ -6,3 +6,5 @@ node_modules
 *.log
 dist/
 .idea
+*.sublime-workspace
+*.sublime-project
