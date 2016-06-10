@@ -6,6 +6,7 @@ import path     from 'path';
 import sync     from 'run-sequence';
 import rename   from 'gulp-rename';
 import template from 'gulp-template';
+import surge    from 'gulp-surge';
 import fs       from 'fs';
 import yargs    from 'yargs';
 import lodash   from 'lodash';
@@ -120,6 +121,13 @@ gulp.task('clean', (cb) => {
   del([paths.dest]).then(function (paths) {
     gutil.log("[clean]", paths);
     cb();
+  })
+});
+
+gulp.task('deploy', ['webpack'], () => {
+  return surge({
+    project: './dist',         // Path to your static build directory
+    domain: 'ngsass.surge.sh'  // Your domain or Surge subdomain
   })
 });
 
