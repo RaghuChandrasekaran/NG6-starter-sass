@@ -9,9 +9,9 @@ module.exports = {
     loaders: [
        { test: /\.js$/, exclude: [/app\/lib/, /node_modules/], loader: 'ng-annotate!babel' },
        { test: /\.html$/, loader: 'raw' },
-       { test: /\.scss$/, loader: 'style!css?sourceMap!sass?sourceMap' },
-       { test: /\.css$/, loader: 'style!css' },
-       { test: /\.jpe?g$|\.gif$|\.png$/i,loader: "url-loader?name=assets/img/[name]_[hash].[ext]&limit=50000'" }
+       { test: /\.scss$/, loader: 'style!css?sourceMap!resolve-url!sass?sourceMap' },
+       { test: /\.css$/, loader: 'style!css!resolve-url' },
+       { test: /\.jpe?g$|\.gif$|\.png$/i,loader: "url-loader?name=assets/img/[name]_[hash].[ext]&limit=10000'" },
     ]
   },
   plugins: [

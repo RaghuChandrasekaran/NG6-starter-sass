@@ -4,7 +4,7 @@ var config  = require('./webpack.config');
 
 config.output = {
   filename: '[name].bundle.js',
-  publicPath: 'http://localhost:3000/assets',
+  publicPath: 'http://localhost:3000/',
   path: path.resolve(__dirname, 'client')
 };
 
