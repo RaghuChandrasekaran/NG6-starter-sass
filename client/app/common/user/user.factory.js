@@ -1,15 +1,14 @@
-let UserFactory = function () {
-  const user = {};
-
-  let getUser = () => {
-    return user;
-  };
-
-  let isSignedIn = () => {
-    return user.isSignedIn; 
-  };
-
-  return { getUser, isSignedIn };
+let UserFactory = function() {
+    let loggedInUser = {};
+    let getLoggedInUser = () => {
+        return loggedInUser;
+    };
+    let setLoggedInUser = (username) => {
+        loggedInUser.username = username;
+    }
+    return {
+        getLoggedInUser,
+        setLoggedInUser
+    };
 };
-
 export default UserFactory;

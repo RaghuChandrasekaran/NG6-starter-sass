@@ -1,13 +1,16 @@
 class HomeController {
-    constructor(AuthenticationService) {
+    constructor(AuthenticationService,User) {
         "ngInject";
-        this.auth=AuthenticationService;
-        this.message='';
+        this.auth = AuthenticationService;
+        this.User=User;
+        this.message = '';
     }
     handleRequest(res) {
         var token = res.data ? res.data.token : null;
         if (token) {
+            this.User.setLoggedInUser(this.auth.parseJwt(this.auth.getToken()).username);
             console.log('JWT:', token);
+            console.log(this.User.getLoggedInUser());
         }
         this.message = res.data.message;
     }
@@ -16,15 +19,6 @@ class HomeController {
     }
     register() {
         this.auth.register(this.username, this.password).then(::this.handleRequest, ::this.handleRequest)
-    }
-    getQuote() {
-        this.auth.getQuote().then(::this.handleRequest, ::this.handleRequest);
-    }
-    logout() {
-        this.auth.logout && this.auth.logout();
-    }
-    isAuthed() {
-        return this.auth.isAuthed ? this.auth.isAuthed() : false;
     }
 }
 export default HomeController;

@@ -1,5 +1,9 @@
-<navbar></navbar>
-<h1>{{ vm.name }}</h1>
-<section>
-  About us in the 
-</section>
+<button ng-click="vm.getQuote()">
+    get quote
+</button>
+<br/>
+<br/>
+{{ vm.message }}
+<button ng-click="vm.logout()" ng-show="vm.isAuthed()">
+    Logout
+</button>
