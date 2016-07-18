@@ -1,5 +1,9 @@
-let authInterceptor = function(API, $window) {
+let authInterceptor = function(API, $window, $timeout, $injector) {
     "ngInject";
+     var $state;
+    $timeout(function() {
+        $state = $injector.get('$state');
+    });
     let request = (config) => {
         var token = $window.localStorage['jwtToken'];
         if (config.url.indexOf(API) === 0 && token) {
@@ -13,9 +17,14 @@ let authInterceptor = function(API, $window) {
         }
         return res;
     };
+    let responseError = (res) => {
+        if (res.status === 401) {}
+        return res;
+    };
     return {
         request,
-        response
+        response,
+        responseError
     };
 };
 export default authInterceptor;
